@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "start": "node app.js"
   },
   "author": "Ofonime Francis",
@@ -13,11 +12,10 @@
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
-    "express": "^4.16.1",
+    "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.12.0",
-    "morgan": "^1.9.0",
-    "nodemon": "^1.12.1"
+    "mongoose": "^4.12.4",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
