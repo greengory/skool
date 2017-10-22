@@ -1,0 +1,22 @@
+const mongoose = require("mongoose");
+
+const { Schema } = mongoose;
+
+var StudentSchema = new Schema({
+  firstName : { type: String, required: true },
+  middleName: { type: String, required: false },
+  lastName : { type: String, required: true },
+  avatar_url : { type: String, required: true },
+  password: { type: String, required: true, minlength: 8},
+  email : { type: String , required: true, lowercase: true, unique : true},
+  username : { type: String, required: true, unique: true },
+  phoneNumber: Number,
+  nationality: String,
+  gender: String,
+  _courses: [ {type: Schema.Types.ObjectId, ref: "Course" } ],
+  isDeleted: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date}
+});
+
+module.exports = mongoose.model("Student", StudentSchema);

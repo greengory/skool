@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Hello, <%= title %></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <style>
+      .featured-course-box__glue, .featured_course__boxes, .featured_course_box {
+          display: flex;
+      }
+      .well img {
+        max-width: 100%;
+        width: inherit;
+        height: 300px;
+      }
+
+      .well {
+        background: tomato;
+        padding: 8px;
+        height: 300px;
+        margin-bottom: 21px;
+      }
+
+      .well p {
+        text-align: center;
+        margin-top: 50%;
+        font-size: 33px;
+        color: pink;
+      }
+
+      .featuredBoard { margin: 120px auto; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <% include ./partials/navigation.ejs %>
+      </nav>
+      <div class="featuredBoard container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>Featured Courses</h2>
+            <div class="row">
+              <% featuredCourses.forEach((featuredCourse) => { %>
+                <div class="col-md-3">
+                  <div class="well" style="background: url(<%= featuredCourse.bannerImage %>)">
+                    <p><%= featuredCourse.code %></p>
+                  </div>
+                </div>
+              <% }); %>
+            </div><!--/row-->
+          </div><!--/col-12-->
+        </div><!--/row-->
+      </div><!-- ./container -->
+
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Code</th>
+              <th>Username</th>
+            </tr>
+          </thead>
+          <% featuredCourses.forEach((featuredCourse) => { %>
+            <tbody>
+              <tr>
+                <th scope="row"><%= featuredCourse.id %></th>
+                  <td><%= featuredCourse.title %></td>
+                  <td><%= featuredCourse.code %></td>
+                  <td>@mdo</td>
+              </tr>
+          <% }); %>
+          </tbody>
+        </table>
+      </div><!-- ./container-->
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="username" class="form-control-label">Username:</label>
+                  <input type="text" class="form-control" name="username" id="username">
+                </div>
+
+                <div class="form-group">
+                  <label for="password" class="form-control-label">Password:</label>
+                  <input type="password" class="form-control" id="password" name="password" />
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </body>
+</html>
