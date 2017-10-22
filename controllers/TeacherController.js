@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 const Models = require("../models/model");
 
 const teacherController = {};
@@ -48,7 +47,6 @@ teacherController.post = (req, res) => {
     nationality
   } = req.body;
 
-  //let password_hash = bcrypt.hashSync(password, 10);
 
   const teacher = new Models.Teachers({
     firstName,
