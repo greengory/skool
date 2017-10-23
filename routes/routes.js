@@ -11,8 +11,7 @@ router.get("/student/:id", studentController.get);
 router.get("/students", studentController.getAll);
 router.post("/student", studentController.post);
 router.get("/student/username/:username", studentController.getByUsername);
-router.delete("/student/:id", studentController.remove);
-router.delete("/student/username/:username", studentController.removeByUsername);
+router.delete("/student/:username", studentController.removeByUsername);
 
 //Course Routes
 router.get("/course/:id", courseController.get);

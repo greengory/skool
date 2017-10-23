@@ -41,7 +41,7 @@ studentController.getByUsername = (req, res) => {
 
 //GET all the students in the database
 studentController.getAll = (req, res) => {
-  Models.Students.find({}).then((students) => {
+  Models.Students.find({isDeleted: false}).then((students) => {
     return res.status(200).json({
       success: true,
       data: students
