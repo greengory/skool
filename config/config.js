@@ -1,6 +1,6 @@
 module.exports = {
   db: {
-    url: "mongodb://localhost/kryptonite"
+    url: "mongodb://opiumated:phoenix01@ds227045.mlab.com:27045/skooli"
   },
   connection: {
     port: process.env.PORT || 3000
