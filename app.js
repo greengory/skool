@@ -26,6 +26,5 @@ connection.on("error", console.error.bind(console, "Mongoose: Connection Error")
 
 app.use("/", frontendRoutes);
 app.use("/api", routes);
-app.use("/admin", adminRoutes);
 
 app.listen(config.connection.port);

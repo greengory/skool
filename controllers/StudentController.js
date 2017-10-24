@@ -2,12 +2,14 @@ const Models = require("../models/model");
 
 const studentController = {};
 
-//GET a Student by id(default)
+//GET a Student by username(default)
 studentController.get = (req, res) => {
   //Get the student objectId from the request param
   //Find a student with that objectId and output a json of the students data
-  let id = req.params.id;
-  Models.Students.findOne({"_id" : id}, (err, student) => {
+  let username = req.params.username;
+  console.log(username);
+  Models.Students.findOne({"username" : username}, (err, student) => {
+    console.dir(student);
     if(err) {
       return res.status(500).json({
         success: false,
@@ -83,15 +85,29 @@ studentController.post = (req, res) => {
     });
   }).catch((err) => {
     return res.status(500).json({
+      success: false,
       message: err
     });
   });
 }
 
 //PUT Updates a student in the database
-studentController.update = (req, res) => {
-
-}
+studentController.updateByUsername = (req, res) => {
+  Models.Students.findOneAndUpdate({username: req.params.username}, (err, student) => {
+    if(err) {
+      return res.status(500).json({
+        success: false,
+        message: err
+      });
+    }
+    if(student){
+      return res.status(200).json({
+        success: true,
+        data: student
+      });
+    }
+  });
+};
 
 //DELETE Remove a student by their _id
 studentController.remove = (req, res) => {

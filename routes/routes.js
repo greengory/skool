@@ -11,6 +11,7 @@ router.get("/student/:id", studentController.get);
 router.get("/students", studentController.getAll);
 router.post("/student", studentController.post);
 router.get("/student/username/:username", studentController.getByUsername);
+router.put("/student/:username", studentController.updateByUsername);
 router.delete("/student/:username", studentController.removeByUsername);
 
 //Course Routes

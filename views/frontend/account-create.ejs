@@ -1,112 +1,81 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Hello, <%= title %></title>
+    <title><%= title %></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <style>
-      .featured-course-box__glue, .featured_course__boxes, .featured_course_box {
-          display: flex;
-      }
-      .well img {
-        max-width: 100%;
-        width: inherit;
-        height: 300px;
-      }
-
-      .well {
-        background: tomato;
-        padding: 8px;
-        height: 300px;
-        margin-bottom: 21px;
-      }
-
-      .well p {
-        text-align: center;
-        margin-top: 50%;
-        font-size: 33px;
-        color: pink;
-      }
-
-      .jumbotron { text-align: center;}
-
-      .jumbotron p.lead {
-        width: 50%;
-        margin: 0 auto;
-      }
-
-      .featuredBoard { margin: 120px auto; }
-    </style>
   </head>
   <body>
     <main>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <% include ./partials/navigation.ejs %>
       </nav>
-
-      <div class="jumbotron">
-        <h1 class="display-3">Glad to Have you!!</h1>
-        <p class="lead">Welcome to <b>Skooli</b>, a Student Information System project for the Andela
-          Learning Community (Intermediate Web development). You can perform all CRUD related task.
-          Why not have a go?
-        </p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button" style="margin-top: 40px;">Learn more</a>
-        </p>
-     </div>
       <div class="featuredBoard container">
         <div class="row">
           <div class="col-sm-12">
-            <h2>Featured Courses</h2>
             <div class="row">
-              <% featuredCourses.forEach((featuredCourse) => { %>
-                <div class="col-md-3">
-                  <div class="well" style="background: url(<%= featuredCourse.bannerImage %>)">
-                    <p><%= featuredCourse.code %></p>
-                  </div>
+                <div class="col-sm-3">
+
                 </div>
-              <% }); %>
-            </div><!--/row-->
+
+                <div class="col-sm-6" style="margin-top: 80px;">
+                  <form method="post" action="/api/student">
+                    <h2 style="text-align: center; margin-bottom: 30px;">Register Student </h2>
+                    <div class="form-row">
+                      <div class="col">
+                          <input type="text" class="form-control" placeholder="First name" name="firstName" required>
+                      </div>
+                      <div class="col">
+                          <input type="text" class="form-control" placeholder="Middle name" name="middleName">
+                      </div>
+
+                    </div>
+                    <br />
+                    <div class="form-row">
+                      <div class="col">
+                          <input type="text" class="form-control" placeholder="Last name" name="lastName" required>
+                      </div>
+
+                      <div class="col">
+                        <input type="email" class="form-control" placeholder="E-mail" name="email" required>
+                      </div>
+
+                    </div>
+
+                    <br />
+                    <div class="form-row">
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Username" name="username" required>
+                      </div>
+
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Nationality" name="nationality" >
+                      </div>
+                    </div>
+
+                    <br />
+                    <div class="form-row">
+                      <div class="col">
+                        <input type="number" class="form-control" placeholder="Phone Number" name="phoneNumber" required>
+                      </div>
+
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Gender" name="gender" required>
+                      </div>
+                    </div>
+                    <br />
+                    <input type="submit" class="btn btn-primary" value="Register">
+
+                  </form>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
           </div><!--/col-12-->
         </div><!--/row-->
       </div><!-- ./container -->
-
-
-      <div class="container" style="margin-top: 60px;">
-        <div class="row">
-          <div class="col-sm-12">
-            <table class="table">
-              <thead>
-                <h2 style="margin-bottom: 40px;">Students</h2>
-                <tr>
-                  <th>#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <% if(newData.success) { %>
-                <% newData.data.forEach((students, index) => { %>
-                  <tbody>
-                    <tr>
-                      <th scope="row"><%= index+1 %></th>
-                        <td><%= students.firstName %></td>
-                        <td><%= students.lastName %></td>
-                        <td><%= students.username %></td>
-                        <td><a href="/account/<%= students.username %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-                        <td><a href="#" class="remove-student" data-username="<%= students.username %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                    </tr>
-                <% }); %>
-                </tbody>
-              <% } %>
-          </div>
-        </div>
-      </div>
 
       <!-- Include Modals in another file -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

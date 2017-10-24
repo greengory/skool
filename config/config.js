@@ -1,4 +1,7 @@
 module.exports = {
+  app: {
+    name: "Skooli"
+  },
   db: {
     url: "mongodb://opiumated:phoenix01@ds227045.mlab.com:27045/skooli"
   },
