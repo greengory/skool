@@ -49,6 +49,7 @@ studentController.getAll = (req, res) => {
       data: students
     }).catch((err) => {
       return res.status(500).json({
+        success: false,
         message: err
       });
     });

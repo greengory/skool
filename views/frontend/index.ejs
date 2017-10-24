@@ -98,7 +98,7 @@
                         <td><%= students.firstName %></td>
                         <td><%= students.lastName %></td>
                         <td><%= students.username %></td>
-                        <td><a href="/account/<%= students.username %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                        <td><a href="/account/edit/<%= students.username %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                         <td><a href="#" class="remove-student" data-username="<%= students.username %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                     </tr>
                 <% }); %>
