@@ -8,7 +8,7 @@ let appName = config.app.name;
 frontendControllers.edit = (req, res) => {
   const { username } = req.params;
   //EDIT A STUDENT
-  Request.get(`http://localhost:3000/api/student/username/${username}`, (err, response, body) => {
+  Request.get(`http://skooli.herokuapp/api/student/username/${username}`, (err, response, body) => {
     if(err) throw err;
     const studentData = JSON.parse(body);
     res.render("frontend/account-edit", { title: appName , student: studentData });
