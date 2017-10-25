@@ -20,9 +20,13 @@ frontendControllers.updateAccount = (req, res) => {
   //Updating the student account
   Request.put(`http://skooli.herokuapp.com/api/student/${username}`, (err, response, body) => {
     if(err) throw err;
-    console.dir(JSON.parse(body));
+    let student = JSON.parse(body);
+    res.send({
+      message:  student
+    });
   });
-}
+
+};
 
 
 frontendControllers.home = (req, res) => {
