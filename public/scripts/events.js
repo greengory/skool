@@ -16,7 +16,6 @@ $(function(){
       });
     }
   });
-})();
 
 
 function fetch(url, method) {

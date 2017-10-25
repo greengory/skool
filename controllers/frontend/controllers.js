@@ -15,6 +15,15 @@ frontendControllers.editAccount = (req, res) => {
   });
 };
 
+frontendControllers.updateAccount = (req, res) => {
+  const { username } = req.params;
+  //Updating the student account
+  Request.put(`http://skooli.herokuapp.com/api/student/${username}`, (err, response, body) => {
+    if(err) throw err;
+    console.dir(JSON.parse(body));
+  });
+}
+
 
 frontendControllers.home = (req, res) => {
   Request.get("http://skooli.herokuapp.com/api/students", (err, response, body) => {
@@ -27,5 +36,6 @@ frontendControllers.home = (req, res) => {
 frontendControllers.createAccount = (req, res) => {
   res.render("frontend/account-create", { title: appName});
 };
+
 
 module.exports = frontendControllers;
