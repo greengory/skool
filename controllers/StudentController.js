@@ -94,7 +94,26 @@ studentController.post = (req, res) => {
 
 //PUT Updates a student in the database
 studentController.updateByUsername = (req, res) => {
-  Models.Students.findOneAndUpdate({username: req.params.username}, (err, student) => {
+  const {
+    firstName,
+    middleName,
+    lastName,
+    email,
+    nationality, 
+    gender
+  } = req.body;
+
+  let newStudent = {
+    firstName,
+    lastName,
+    middleName,
+    email,
+    nationality,
+    gender,
+    phoneNumber,
+    updatedAt: Date.now()
+  }
+  Models.Students.findOneAndUpdate({username: req.params.username}, newStudent, (err, student) => {
     if(err) {
       return res.status(500).json({
         success: false,
