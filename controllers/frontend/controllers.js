@@ -16,14 +16,48 @@ frontendControllers.editAccount = (req, res) => {
 };
 
 frontendControllers.updateAccount = (req, res) => {
-  const { username } = req.params;
-  //Updating the student account
+  const { userName } = req.params;
+
+  //GET POST data from request body
+  const {
+    firstName,
+    middleName,
+    lastName,
+    avatar_url,
+    email,
+    phoneNumber,
+    nationality,
+    gender
+  } = req.body;
+
+  //create a new object for the data we want to update
+  let newStudent = {
+    firstName: firstName,
+    middleName: middleName,
+    lastName : lastName,
+    avatar_url : avatar_url,
+    email: email,
+    phoneNumber : phoneNumber,
+    username: username,
+    nationality : nationality,
+    gender: gender,
+    updatedAt : Date.now()
+  };
+
   Request.put(`http://skooli.herokuapp.com/api/student/${username}`, (err, response, body) => {
     if(err) throw err;
-    let student = JSON.parse(body);
-    res.send({
-      message:  student
-    });
+    if(body) {
+      const StudentData = JSON.parse(body);
+      if(StudentData.success && (typeof StudentData.data !== "undefined") ){
+        res.send({
+          message: "successfully updated student"
+        });
+      }else {
+        res.send({
+          message: "Failed to update student"
+        });
+      }
+    }
   });
 
 };

@@ -112,7 +112,8 @@ studentController.updateByUsername = (req, res) => {
     gender,
     phoneNumber,
     updatedAt: Date.now()
-  }
+  };
+  
   Models.Students.findOneAndUpdate({username: req.params.username}, newStudent, (err, student) => {
     if(err) {
       return res.status(500).json({
