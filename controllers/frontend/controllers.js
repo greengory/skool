@@ -1,6 +1,7 @@
 const Request = require("request");
 const data = require("../../config/data");
 const config = require("../../config/config");
+const Models = require("../../models/model");
 
 const frontendControllers = {};
 let appName = config.app.name;
@@ -37,29 +38,20 @@ frontendControllers.updateAccount = (req, res) => {
     lastName : lastName,
     avatar_url : avatar_url,
     email: email,
-    phoneNumber : phoneNumber,
-    username: username,
     nationality : nationality,
     gender: gender,
     updatedAt : Date.now()
   };
 
-  Request.put(`http://skooli.herokuapp.com/api/student/${username}`, (err, response, body) => {
-    if(err) throw err;
-    if(body) {
-      const StudentData = JSON.parse(body);
-      if(StudentData.success && (typeof StudentData.data !== "undefined") ){
-        res.send({
-          message: "successfully updated student"
-        });
-      }else {
-        res.send({
-          message: "Failed to update student"
-        });
-      }
+
+  Models.Students.findOneAndUpdate({username: req.params.username}, newStudent, (err, student) => {
+    if(err) {
+      return res.status(404).send("Student with that username Not Found")
+    }
+    if(student){
+      return res.redirect("/");
     }
   });
-
 };
 
 
