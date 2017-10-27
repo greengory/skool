@@ -4,7 +4,7 @@ $(document).ready(function() {
     const studentUsername =  e.currentTarget.dataset.username;
     const status = window.confirm("Sure you want to delete this student?");
     if(status) {
-     fetch(`http://localhost:3000/api/student/${studentUsername}`, "delete")
+     fetch(`http://skooli.herokuapp.com/api/student/${studentUsername}`, "delete")
       .then((response) => {
         window.location.reload();
       }).catch((err) => {
