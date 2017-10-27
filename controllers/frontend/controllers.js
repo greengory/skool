@@ -9,7 +9,7 @@ let appName = config.app.name;
 frontendControllers.editAccount = (req, res) => {
   const { username } = req.params;
   console.dir(username);
-  Request.get(`http://skooli.herokuapp.com/api/student/username/${username}`, (err, response, body) => {
+  Request.get(`https://skooli.herokuapp.com/api/student/username/${username}`, (err, response, body) => {
     if(err) throw err;
     const studentData = JSON.parse(body);
     res.render("frontend/account-edit", { title: appName , student: studentData });
@@ -56,7 +56,7 @@ frontendControllers.updateAccount = (req, res) => {
 
 
 frontendControllers.home = (req, res) => {
-  Request.get("http://skooli.herokuapp.com/api/students", (err, response, body) => {
+  Request.get("https://skooli.herokuapp.com/api/students", (err, response, body) => {
     if(err) throw err;
     const restData = JSON.parse(body);
     res.render("frontend/index", { title: appName , featuredCourses : data, newData: restData });

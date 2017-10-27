@@ -13,21 +13,21 @@ function ensureToken(req, res, next) {
     }else {
         res.sendStatus(403);
     }
-    
+
 }
 
 
 //router.get("/login", adminController.login);
 router.post("/login", adminController.login);
-//List All Students 
+//List All Students
 router.get("/students", adminController.getStudents);
 
 router.get("/protected", ensureToken, adminController.protected );
 
-//Update a Student Record 
+//Update a Student Record
 /**router.update("/student/:id", adminController.UpdateStudent);
 
-//Delete a Student Record 
+//Delete a Student Record
 router.delete("/student/:id", adminController.RemoveStudent);**/
 
 
