@@ -11,8 +11,6 @@ var StudentSchema = new Schema({
   username : { type: String, required: true, unique: true },
   phoneNumber: Number,
   nationality: String,
-  gender: String,
-  _courses: [ {type: Schema.Types.ObjectId, ref: "Course" } ],
   isDeleted: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date}

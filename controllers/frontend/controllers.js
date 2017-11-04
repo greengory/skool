@@ -67,5 +67,25 @@ frontendControllers.createAccount = (req, res) => {
   res.render("frontend/account-create", { title: appName});
 };
 
+frontendControllers.registerStudent = (req, res) => {
+  let newStudent = {
+    firstName : req.body.firstName,
+    middleName: req.body.middleName,
+    lastName: req.body.lastName, 
+    username: req.body.username,
+    phoneNumber: req.body.phoneNumber,
+    nationality : req.body.nationality,
+    email: req.body.email,
+    gender: req.body.gender
+  };
+
+  Request.post("http://localhost:3000/api/student", newStudent, (err, student) => {
+      if(err) throw err;
+      console.log(student);
+      
+  });
+};
+
+
 
 module.exports = frontendControllers;

@@ -15,13 +15,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect(config.db.url);
 const connection = mongoose.connection;
+mongoose.Promise = global.Promise;
 connection.on("error", console.error.bind(console, "Mongoose: Connection Error"));
 
 app.use("/", frontendRoutes);
