@@ -55,6 +55,8 @@ frontendControllers.updateAccount = (req, res) => {
 };
 
 
+
+
 frontendControllers.home = (req, res) => {
   Request.get("https://skooli.herokuapp.com/api/students", (err, response, body) => {
     if(err) throw err;
@@ -67,22 +69,17 @@ frontendControllers.createAccount = (req, res) => {
   res.render("frontend/account-create", { title: appName});
 };
 
-frontendControllers.registerStudent = (req, res) => {
-  let newStudent = {
-    firstName : req.body.firstName,
-    middleName: req.body.middleName,
-    lastName: req.body.lastName, 
-    username: req.body.username,
-    phoneNumber: req.body.phoneNumber,
-    nationality : req.body.nationality,
-    email: req.body.email,
-    gender: req.body.gender
-  };
 
-  Request.post("http://localhost:3000/api/student", newStudent, (err, student) => {
-      if(err) throw err;
-      console.log(student);
-      
+frontendControllers.registerStudent = (req, res) => {
+  //GET POST data from request body
+  let student = new Models.Students(req.body);
+  student.save((err, newStudent) => {
+    if(err) {
+      res.status(500).send(err);
+    }
+    if(newStudent){
+      return res.redirect("/");
+    }
   });
 };
 

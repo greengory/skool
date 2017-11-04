@@ -7,7 +7,7 @@ module.exports = {
     //url: "mongodb://localhost/myapp"
   },
   connection: {
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3001
   },
   jwt: {
     secretKey: process.env.SECRET_KEY || "yrevdabterces"
